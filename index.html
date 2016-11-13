@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="gameApp">
   <head>
     <meta charset="utf-8">
     <title>Blackjack</title>
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/reset.css" media="screen" title="no title">
     <link rel="stylesheet" href="styles/styles.css" media="screen" title="no title">
   </head>
-  <body>
+  <body ng-controller="mainController">
 
     <header>
       <button class="reset-scores-btn" type="button" name="button">Reset Scores</button>
@@ -89,6 +89,8 @@
     </main>
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+<script src="js/app.js"></script>
 <script src="js/jquery.js"></script>
   </body>
 </html>

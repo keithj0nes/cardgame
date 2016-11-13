@@ -138,7 +138,21 @@ main {
 
     /*****************TESTING NEW CARD SLIDE IN*****************/
 
-                @keyframes slide-in-right {
+                @-moz-keyframes slide-in-right {
+                  0% {
+                    transform: translateX(800px);
+                  }
+                  100% {
+                    transform: translateX(-140px);
+                  }
+                }
+
+                /*webkit for chrome not working????
+                needs to be set at 140px for chrome
+                but both firefox and chrome will use
+                that same -webkit- setting below*/
+
+                @-webkit-keyframes slide-in-right {
                   0% {
                     transform: translateX(800px);
                   }
@@ -155,7 +169,8 @@ main {
                   display: block;
                   position: absolute;
                   top: 10.8%;
-                  animation: slide-in-right 0.8s ease-in-out forwards;
+                  -moz-animation: slide-in-right 0.8s ease-in-out forwards;
+                  -webkit-animation: slide-in-right 0.8s ease-in-out forwards;
 
                 }
 
