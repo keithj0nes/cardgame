@@ -6,7 +6,7 @@ body {
   background-image: url("../img/feltbg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  /*overflow: hidden;*/
+  overflow: hidden;
   background-color: darkgreen;
 
   /*background: red;*/
@@ -18,7 +18,6 @@ header {
   /*background: red;*/
   position: fixed;
   z-index: 9999;
-  /*display: none;*/
 }
   .reset-scores-btn {
     float:left;
@@ -336,7 +335,7 @@ main {
   width: 20vw;
   height: 100vh;
   /*background-color: purple;*/
-
+  position: relative;
   color: white;
   text-align: center;
   font-size: 20px;
@@ -388,12 +387,21 @@ main {
   }
 
   .how-to-play-box {
-    height: 20px;
-    width: 20px;
-    background: red;
     position: absolute;
-    bottom:0;
-    right:0;
+    bottom:5px;
+    left:50%;
+    transform: translate(-52%, 0);
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    transition: transform .3s ease-out;
+  }
+  .how-to-play-box:hover {
+    transition: translate;
+    background: yellow;
+    padding: 2px;
+    color: black;
+
   }
 
   .how-to-play-info-invis {
@@ -401,52 +409,63 @@ main {
     top: 0;
     width: 100%;
     /*height: 800px;*/
-    background: yellow;
+    /*background: yellow;*/
   }
 
-  .how-to-play-info {
-    /*position: absolute;
-    bottom: 0;*/
-    /*top: 20%;
-    right: 50%;*/
-    margin: auto;
-
-    /*display: flex;*/
-    display: none;
-    width: 600px;
+/*
+  .how-to-play-info-invis2 {
+    padding-top: 200px;
+    background: green;
+    width: 700px;
     height: 800px;
-    /*margin-left: -200px;*/
-    /*margin-top: 20px;*/
-    /*margin-right: 200px;*/
-    background: gray;
-    padding: 40px;
+    margin: auto;
+    display: none;
+    padding-top: 200px;
+
+  }*/
+
+
+  .how-to-play-info {
+    display: none;
+    position: relative;
+    margin: 10% auto;
+    font-size: 20px;
+    width: 750px;
+    color: #eee;
+    background: rgba(0, 0, 0, 0.9);;
+    padding: 60px 40px;
+    border: 2px solid yellow;
+    border-radius:10px;
   }
 
   .how-to-play-info h2 {
-    font-size: 30px;
+    font-size: 50px;
     text-align: center;
     padding-bottom: 20px;
   }
 
-
-  @-webkit-keyframes howtoplay {
-    0% {
-      transform: translateY(0px);
-    }
-    100% {
-      transform: translateY(200px);
-
-    }
+  .how-to-play-info ul {
+    padding-left: 10px;
+  }
+  .how-to-play-info li {
+    list-style-type: disc;
+    padding: 5px 0;
   }
 
-  @-moz-keyframes howtoplay {
-    0% {
-      transform: translateY(0px);
-    }
-    100% {
-      transform: translateY(200px);
-    }
+  .rulez {
+    height: 36px;
+    width: 600px;
+    font-size: 24px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin: 40px auto 0;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: pointer;
   }
+
 
   .showrules {
     display: block;

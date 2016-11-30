@@ -147,22 +147,27 @@ $(document).ready(function() {
       //   },1000)
       // })
 
-      // $(".how-to-play-box").on("click", function(){
-      //   $(".how-to-play-info").slideToggle(500);
-      // // }, function(){
-      // //   $(".how-to-play-info").slideToggle();
-      // })
-      //
-      // $(".rulez").on("click", function(){
+      $(".how-to-play-box").on("click", function(){
+        $(".how-to-play-info").slideToggle(500);
+      // }, function(){
       //   $(".how-to-play-info").slideToggle();
-      // })
-
-
-      $(".how-to-play-box").on("hover", function(){
-        $(".how-to-play-info").toggleClass("showrules");
-
       })
 
+      $(".rulez").on("click", function(){
+        $(".how-to-play-info").slideToggle();
+      })
+
+
+      // $(".how-to-play-box").on("hover", function(){
+      //   $(".how-to-play-info").toggleClass("showrules");
+      //
+      // })
+
+
+      // $(".how-to-play-box").on("click", function(){
+      //   $(".how-to-play").addClass(".how-to-play-info");
+      //   // $(".hit-card2-test").addClass("hidden");
+      // })
 
 
 

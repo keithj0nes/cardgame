@@ -111,18 +111,18 @@ mainService.getCards().then(function(dataFromService){
     //   }
     // }
 
-
-    $scope.compareScores = function(){
-        console.log("compareScores running");
-      if($scope.dealerScore > 21){
-        console.log("dealers busts you win");
-        swal("Dealer busts, you win!");
-      } else if($scope.dealerScore > $scope.playerScore){
-        swal("Dealer Wins!");
-      }else if($scope.dealerScore === $scope.playerScore){
-        swal("You and the dealer got the same score.. PUSH!")
-      }
-    }
+    //
+    // $scope.compareScores = function(){
+    //     console.log("compareScores running");
+    //   if($scope.dealerScore > 21){
+    //     console.log("dealers busts you win");
+    //     swal("Dealer busts, you win!");
+    //   } else if($scope.dealerScore > $scope.playerScore){
+    //     swal("Dealer Wins!");
+    //   }else if($scope.dealerScore === $scope.playerScore){
+    //     swal("You and the dealer got the same score.. PUSH!")
+    //   }
+    // }
 
 
     $scope.trialAdd = function(array){
@@ -140,7 +140,7 @@ mainService.getCards().then(function(dataFromService){
       $scope.playerScore = $scope.trialAdd($scope.playersHand);
 
       if ($scope.playerScore == 21){
-        swal("BLACKJACK!!", "You got 21 dealt to you!<br> click Stand to see dealer's score")
+        swal("BLACKJACK!!", "You got 21 dealt to you! \n Click Stand to see dealer's score")
 
         // if playerScore == 21 on deal, run dealer turn
       }
