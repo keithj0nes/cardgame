@@ -6,6 +6,8 @@ body {
   background-image: url("../img/feltbg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  /*overflow: hidden;*/
+  background-color: darkgreen;
 
   /*background: red;*/
 }
@@ -30,18 +32,20 @@ header {
 main {
   width: 100vw;
   min-width: 1100px;
+  min-height: 500px;
   /*height: 100%;*/
   /*background: yellow;*/
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  /*padding-top: 150px;*/
 }
 
 /****************
-***SCORES LEFT***
+****WINS LEFT****
 ****************/
 
-.post-scores {
+.post-wins {
   width: 20vw;
   height: 100vh;
   /*background-color: blue;*/
@@ -53,7 +57,7 @@ main {
   font-size: 20px;
 }
 
-.user-scores, .computer-scores {
+.user-wins, .computer-wins {
   width: 125px;
   height: 75px;
   border-radius: 10px;
@@ -68,7 +72,7 @@ main {
   justify-content: center;
 }
 
-.user-scores p, .computer-scores p {
+.user-wins p, .computer-wins p {
   /*text-align: center;*/
 }
 
@@ -88,17 +92,56 @@ main {
 
 }
 
-  .card-container {
-    height: 400px;
+  .card-container-dealer {
+    height: 314px;
     width: 600px;
     /*background: pink;*/
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0.8);;
   }
+
+  .dealer-card1 {
+    width: 226px;
+    height: 314px;
+    margin-right: -60px;
+    /*background: black;*/
+    /*position: absolute;
+    bottom: 30px;
+    left: 160px;*/
+    /*transform: rotate(-4deg);*/
+  }
+
+  .dealer-card2 {
+    width: 226px;
+    height: 314px;
+    margin-left: -60px;
+    /*background: coral;*/
+    /*position: absolute;*/
+    /*bottom: 30px;
+    left: 220px;*/
+    /*transform: rotate(7deg);*/
+  }
+
+  .card-container-player {
+    height: 314px;
+    width: 600px;
+    /*background: pink;*/
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+
 
     .card1 {
       width: 226px;
@@ -122,11 +165,14 @@ main {
       /*transform: rotate(7deg);*/
     }
 
-    .move {
-      animation: slide-in 0.8s ease-in-out forwards;
+    /*PLAYER CARDS MOVE LEFT*/
+    .move-left {
+      animation: slide-to-left 0.8s ease-in-out forwards;
+      position: relative;
+      /*top: 10.75%;*/
     }
 
-    @keyframes slide-in {
+    @keyframes slide-to-left {
       0% {
         transform: translateX(0);
       }
@@ -135,15 +181,68 @@ main {
       }
     }
 
+    /*DEALER CARDS MOVE RIGHT*/
+
+    .move-right {
+      animation: slide-to-right 0.8s ease-in-out forwards;
+      position: relative;
+      /*top: 10.75%;*/
+    }
+
+    @keyframes slide-to-right {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(200px);
+      }
+    }
+
+
 
     /*****************TESTING NEW CARD SLIDE IN*****************/
 
-                @-moz-keyframes slide-in-right {
+                /*PLAYER SLIDE IN FROM RIGHT*/
+
+
+                @-webkit-keyframes slide-in-from-right {
                   0% {
-                    transform: translateX(800px);
+                    transform: translateX(1000px);
+                  }
+                  100% {
+                    transform: translateX(140px);
+
+                  }
+                }
+
+                @-moz-keyframes slide-in-from-right {
+                  0% {
+                    transform: translateX(1000px);
                   }
                   100% {
                     transform: translateX(-140px);
+                  }
+                }
+
+                /*DEALER SLIDE IN FROM LEFT*/
+
+
+                @-webkit-keyframes slide-in-from-left {
+                  0% {
+                    transform: translateX(-1000px);
+                  }
+                  100% {
+                    transform: translateX(-150px);
+
+                  }
+                }
+
+                @-moz-keyframes slide-in-from-left {
+                  0% {
+                    transform: translateX(-1500px);
+                  }
+                  100% {
+                    transform: translateX(-420px);
                   }
                 }
 
@@ -152,27 +251,26 @@ main {
                 but both firefox and chrome will use
                 that same -webkit- setting below*/
 
-                @-webkit-keyframes slide-in-right {
-                  0% {
-                    transform: translateX(800px);
-                  }
-                  100% {
-                    transform: translateX(-140px);
-                  }
-                }
+
 
                 .hidden{
                   display: none;
                 }
 
-                .show{
+                /*****SHOW PLAYER HIT CARDS*****/
+
+                .show-player {
                   display: block;
                   position: absolute;
-                  top: 10.8%;
-                  -moz-animation: slide-in-right 0.8s ease-in-out forwards;
-                  -webkit-animation: slide-in-right 0.8s ease-in-out forwards;
+                  /*top: 10.75%;*/
+                  top: 0;
+                  /*bottom: 9%;*/
+                  -moz-animation: slide-in-from-right 0.8s ease-in-out forwards;
+                  -webkit-animation: slide-in-from-right 0.8s ease-in-out forwards;
 
                 }
+
+
 
                 .hit-card2-test {
                   margin-left: 35px;
@@ -186,6 +284,34 @@ main {
                 .hit-card5-test {
                   margin-left: 140px;
                 }
+
+
+                .show-dealer {
+                  display: block;
+                  position: absolute;
+                  /*top: 10.75%;*/
+                  top: 0;
+                  /*bottom: 9%;*/
+                  -moz-animation: slide-in-from-left 0.8s ease-in-out forwards;
+                  -webkit-animation: slide-in-from-left 0.8s ease-in-out forwards;
+
+                }
+
+                .dealer-hit-card2-test {
+                  margin-left: -35px;
+                }
+                .dealer-hit-card3-test {
+                  margin-left: -70px;
+                }
+                .dealer-hit-card4-test {
+                  margin-left: -105px;
+                }
+                .dealer-hit-card5-test {
+                  margin-left: -140px;
+                }
+
+
+
 
     /*****************TESTING NEW CARD SLIDE IN*****************/
 
@@ -210,10 +336,21 @@ main {
   width: 20vw;
   height: 100vh;
   /*background-color: purple;*/
+
+  color: white;
+  text-align: center;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
+
+  .dealer-score {
+    width: 125px;
+    height: 75px;
+    font-size: 30px;
+  }
 
   .user-btn {
     width: 125px;
@@ -231,6 +368,96 @@ main {
 
   }
 
+  .user-score, .dealer-score {
+    width: 125px;
+    height: 45px;
+    /*border: 2px solid yellow;*/
+    margin: 10px 10px;
+
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .user-score p, .dealer-score p {
+    padding: 2px;
+  }
+
+  .how-to-play-box {
+    height: 20px;
+    width: 20px;
+    background: red;
+    position: absolute;
+    bottom:0;
+    right:0;
+  }
+
+  .how-to-play-info-invis {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    /*height: 800px;*/
+    background: yellow;
+  }
+
+  .how-to-play-info {
+    /*position: absolute;
+    bottom: 0;*/
+    /*top: 20%;
+    right: 50%;*/
+    margin: auto;
+
+    /*display: flex;*/
+    display: none;
+    width: 600px;
+    height: 800px;
+    /*margin-left: -200px;*/
+    /*margin-top: 20px;*/
+    /*margin-right: 200px;*/
+    background: gray;
+    padding: 40px;
+  }
+
+  .how-to-play-info h2 {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+
+  @-webkit-keyframes howtoplay {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(200px);
+
+    }
+  }
+
+  @-moz-keyframes howtoplay {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(200px);
+    }
+  }
+
+  .showrules {
+    display: block;
+    position: absolute;
+    /*top: 10.75%;*/
+    /*top: 0;*/
+    bottom: 0;
+    -moz-animation: howtoplay 0.8s ease-in-out forwards;
+    -webkit-animation: howtoplay 0.8s ease-in-out forwards;
+
+  }
 
   /*.user-btn {
   display: inline-block;
@@ -248,3 +475,26 @@ main {
   background-color: #2098D1;
   color: white;
 }*/
+
+
+
+@media screen and (min-height: 800px) {
+
+  .card-container-dealer, .card-container-player {
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%, 0) scale(1); ;
+  }
+
+  .card-container-dealer {
+    top: 25px;
+  }
+
+  .card-container-player{
+    bottom: 25px;
+  }
+
+
+
+}
