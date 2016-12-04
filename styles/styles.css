@@ -206,7 +206,7 @@ main {
 
                 @-webkit-keyframes slide-in-from-right {
                   0% {
-                    transform: translateX(1000px);
+                    transform: translateX(1200px);
                   }
                   100% {
                     transform: translateX(140px);
@@ -216,7 +216,7 @@ main {
 
                 @-moz-keyframes slide-in-from-right {
                   0% {
-                    transform: translateX(1000px);
+                    transform: translateX(1200px);
                   }
                   100% {
                     transform: translateX(-140px);
@@ -228,7 +228,7 @@ main {
 
                 @-webkit-keyframes slide-in-from-left {
                   0% {
-                    transform: translateX(-1000px);
+                    transform: translateX(-1200px);
                   }
                   100% {
                     transform: translateX(-150px);
@@ -244,6 +244,25 @@ main {
                     transform: translateX(-420px);
                   }
                 }
+
+                /*@-webkit-keyframes hide-dealer-animation {
+                  0% {
+                    transform: translateX(-150px);
+                  }
+                  100% {
+                    transform: translateX(-1500px);
+
+                  }
+                }
+
+                @-moz-keyframes hide-dealer-animation {
+                  0% {
+                    transform: translateX(-420px);
+                  }
+                  100% {
+                    transform: translateX(-2000px);
+                  }
+                }*/
 
                 /*webkit for chrome not working????
                 needs to be set at 140px for chrome
@@ -261,12 +280,15 @@ main {
                 .show-player {
                   display: block;
                   position: absolute;
-                  /*top: 10.75%;*/
                   top: 0;
-                  /*bottom: 9%;*/
                   -moz-animation: slide-in-from-right 0.8s ease-in-out forwards;
                   -webkit-animation: slide-in-from-right 0.8s ease-in-out forwards;
 
+                }
+
+                .whatup {
+                  padding-top: 200px;
+                  background: red;
                 }
 
 
@@ -288,9 +310,7 @@ main {
                 .show-dealer {
                   display: block;
                   position: absolute;
-                  /*top: 10.75%;*/
                   top: 0;
-                  /*bottom: 9%;*/
                   -moz-animation: slide-in-from-left 0.8s ease-in-out forwards;
                   -webkit-animation: slide-in-from-left 0.8s ease-in-out forwards;
 
@@ -313,19 +333,6 @@ main {
 
 
     /*****************TESTING NEW CARD SLIDE IN*****************/
-
-  .hit-card-container {
-    width: 60vw;
-    height: 140px;
-    /*background: red;*/
-    position: absolute;
-    bottom: 0px;
-    display: flex;
-    justify-content: space-around;
-    overflow: hidden;
-  }
-
-
 
   /******************
   ***BUTTONS RIGHT***
@@ -412,23 +419,10 @@ main {
     /*background: yellow;*/
   }
 
-/*
-  .how-to-play-info-invis2 {
-    padding-top: 200px;
-    background: green;
-    width: 700px;
-    height: 800px;
-    margin: auto;
-    display: none;
-    padding-top: 200px;
-
-  }*/
-
-
   .how-to-play-info {
     display: none;
     position: relative;
-    margin: 10% auto;
+    margin: 10vh auto;
     font-size: 20px;
     width: 750px;
     color: #eee;
@@ -438,40 +432,38 @@ main {
     border-radius:10px;
   }
 
-  .how-to-play-info h2 {
-    font-size: 50px;
-    text-align: center;
-    padding-bottom: 20px;
-  }
+    .how-to-play-info h2 {
+      font-size: 50px;
+      text-align: center;
+      padding-bottom: 20px;
+    }
 
-  .how-to-play-info ul {
-    padding-left: 10px;
-  }
-  .how-to-play-info li {
-    list-style-type: disc;
-    padding: 5px 0;
-  }
+    .how-to-play-info ul {
+      padding-left: 10px;
+    }
+    .how-to-play-info li {
+      list-style-type: disc;
+      padding: 5px 0;
+    }
 
-  .rulez {
-    height: 36px;
-    width: 600px;
-    font-size: 24px;
-    text-transform: uppercase;
-    border-radius: 4px;
-    margin: 40px auto 0;
-    text-align: center;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-    cursor: pointer;
-  }
+    .rulez {
+      height: 36px;
+      width: 600px;
+      font-size: 24px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      margin: 40px auto 0;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0);
+      cursor: pointer;
+    }
 
 
   .showrules {
     display: block;
     position: absolute;
-    /*top: 10.75%;*/
-    /*top: 0;*/
     bottom: 0;
     -moz-animation: howtoplay 0.8s ease-in-out forwards;
     -webkit-animation: howtoplay 0.8s ease-in-out forwards;

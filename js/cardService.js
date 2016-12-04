@@ -4,12 +4,40 @@ angular.module("gameApp").service("mainService", function($http, $q){
   var baseUrl = "https://deckofcardsapi.com/api/deck/";
   var deckId;
 
+  this.setFn = function(num){
+    localStorage.setItem('playerWins', JSON.stringify(num));
+  };
+
+  function PlayerStats(userName, userWins, userLosses){//parameters - set by maincontroller
+    this.userName = userName; //arg
+    this.userWins = userWins;
+    this.userLosses = userLosses;
+  }
+
+  this.setUsers = function(x,y,z){
+    var obj = new PlayerStats(x,y,z);
+    // var array = [];
+    // array.push(obj);
+    localStorage.setItem(x,JSON.stringify(obj));
+    // localStorage.setItem('listOfPlayers',JSON.stringify(array));
+  };
+
+  this.getCurrentUser = function(name){
+    // if(!localStorage.getItem(name)){
+    //   console.log("service getCurrentUser", name);
+    //   localStorage[name] = null;
+    // }else{
+    //   console.log("service getCurrentUser", name);
+      return JSON.parse(localStorage.getItem(name));
+      ///get array loop through find user and set to current user
+    // }
+  };
 
   this.getCards = function(){
     return $http({
       method: "GET",
-      url: baseUrl + "new/shuffle/?deck_count=1"
-      // url: baseUrl + "new/?cards=AS,AD,AH,AC,2C,3H,2H,2S,3S,2D,3C"
+      url: baseUrl + "new/shuffle/?deck_count=6"
+      // url: baseUrl + "new/?cards=AS,AD,AH,AC,2C,3H,2H,2S,3S,2D"
         // url: baseUrl + "new/?cards=AS,KH,KC,AH"
     }).then(function(response){
       if(response.status === 200){
@@ -29,7 +57,7 @@ angular.module("gameApp").service("mainService", function($http, $q){
 // }, 500)
 
 
-
+//
 //DRAW 2 CARDS ON OPENING OF GAME
 
 
@@ -43,7 +71,7 @@ angular.module("gameApp").service("mainService", function($http, $q){
         console.log("DRAW 4 WORKZ")
         // console.log(response.data.cards)
         // console.log(response.data)
-        return response.data.cards;
+        return response.data;
       } else {
         console.log("It didnt workz");
       }
@@ -60,9 +88,9 @@ angular.module("gameApp").service("mainService", function($http, $q){
       url: baseUrl + deckId + "/draw/?count=1"
     }).then(function(response){
       if(response.status === 200){
-        console.log("draw 1 werkt")
+        // console.log("draw 1 werkt")
         console.log(response.data);
-        return response.data.cards[0];
+        return response.data;
       }
     })
   }
@@ -70,3 +98,10 @@ angular.module("gameApp").service("mainService", function($http, $q){
 
 
 }) // END SERVICE
+var TESTsetUsers = function(x,y,z){
+  var obj = new PlayerStats(x,y,z);
+  // var array = [];
+  // array.push(obj);
+  localStorage.setItem(x,JSON.stringify(obj));
+  // localStorage.setItem('listOfPlayers',JSON.stringify(array));
+};
