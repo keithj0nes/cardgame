@@ -1,0 +1,45 @@
+<a ui-sref="home" class="main-link flleft"> &lt; Back To Game</a>
+
+  <h1>Player Stats</h1>
+  <div class="stats-box">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Wins</th>
+        <th>Losses</th>
+      </tr>
+      <!-- <tr ng-repeat="game in gameStatsStorage track by $index">
+        <td>{{game.userName}}</td>
+        <td>{{game.userWins}}</td>
+        <td>{{game.userLosses}}</td>
+      </tr> -->
+      <!-- <tr>
+        <td>Keith</td>
+        <td>10</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>Scott</td>
+        <td>13</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Adam</td>
+        <td>2</td>
+        <td>33</td>
+      </tr> -->
+      <!-- <tr ng-repeat="na in s">
+        <td ng-class-odd="'odd'" ng-class-even="'even'">{{na.user}}</td>
+        <td ng-class-odd="'odd'" ng-class-even="'even'">{{na.win}}</td>
+        <td ng-class-odd="'odd'" ng-class-even="'even'">{{na.loss}}</td>
+      </tr> -->
+      <tr ng-repeat="na in names">
+        <td ng-class-odd="'odd'" ng-class-even="'even'">{{na.Name}}</td>
+        <td ng-class-odd="'odd'" ng-class-even="'even'">{{na.City}}</td>
+        <td ng-class-odd="'odd'" ng-class-even="'even'">{{na.Country}}</td>
+      </tr>
+
+
+    </table>
+
+  </div>

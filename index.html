@@ -1,175 +1,33 @@
 <!DOCTYPE html>
 <html ng-app="gameApp">
-  <head>
-    <meta charset="utf-8">
-    <title>Blackjack</title>
+<head>
+  <meta charset="utf-8">
+  <title>Blackjack</title>
 
-    <link rel="stylesheet" href="styles/reset.css" media="screen" title="no title">
-    <link rel="stylesheet" href="styles/styles.css" media="screen" title="no title">
-    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-
-
-  </head>
-  <body ng-controller="mainController">
+  <link rel="stylesheet" href="styles/reset.css" media="screen" title="no title">
+  <link rel="stylesheet" href="styles/styles.css" media="screen" title="no title">
+  <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 
-    <header>
-      <button class="reset-scores-btn" ng-click="resetScores()" type="button" name="button">Reset Scores</button>
-      <button ng-click="newGame()" class="new-game-btn" type="button" name="button">New Deck</button>
-    </header>
-    <main>
-
-      <!-- SCORES SECTION - LEFT -->
-
-      <section class="post-wins">
-        <div class="scores-container">
-
-          <p>Dealer Wins</p>
-          <div class="computer-wins">
-            <p class="scorez">{{dealerWins}}</p>
-          </div>
-
-          <p>{{userName}}'s Wins</p>
-          <div class="user-wins">
-            <p class="scorez">{{playerWins}}</p>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- CARDS SECTION - MIDDLE  -->
-      <section class="user-cards">
-
-        <!-- DEALER CARDS -->
-        <div class="card-container-dealer">
+</head>
+<body>
 
 
-          <div class="dealer-card1">
-              <div class="back">
-                <img ng-src="{{dealersHand[0].image}}" alt="" />
-              </div>
-          </div>
-          <div class="dealer-card2" ng-model="flip">
-            <div class="front">
-              <img src="img/dmcard2.png" height="314px" width="226px" alt="" />
-            </div>
-            <div class="back">
-              <img ng-src="{{dealersHand[1].image}}" alt=""/>
-
-            </div>
-          </div>
-
-          <div class="dealer-hit-card1-test hidden">
-            <img ng-src="{{dealersHand[2].image}}" alt=""/>
-
-          </div>
-
-          <div class="dealer-hit-card2-test hidden">
-            <img ng-src="{{dealersHand[3].image}}" alt="" />
-
-          </div>
-
-          <div class="dealer-hit-card3-test hidden">
-            <img ng-src="{{dealersHand[4].image}}" alt="" />
-
-          </div>
-
-          <div class="dealer-hit-card4-test hidden">
-            <img ng-src="{{dealersHand[5].image}}" alt="" />
-
-          </div>
-
-          <div class="dealer-hit-card5-test hidden">
-            <img ng-src="{{dealersHand[6].image}}" alt="" />
-
-          </div>
-
-        </div>
-        <!-- USER CARDS -->
-        <div class="card-container-player">
-
-
-          <div class="card1">
-            <img ng-src="{{playersHand[0].image}}" />
-          </div>
-          <div class="card2">
-            <img ng-src="{{playersHand[1].image}}" />
-          </div>
-
-          <div class="hit-card1-test hidden">
-            <img ng-src="{{playersHand[2].image}}" alt="" />
-          </div>
-
-          <div class="hit-card2-test hidden">
-            <img ng-src="{{playersHand[3].image}}" alt="" />
-          </div>
-
-          <div class="hit-card3-test hidden">
-            <img ng-src="{{playersHand[4].image}}" alt="" />
-          </div>
-
-          <div class="hit-card4-test hidden">
-            <img ng-src="{{playersHand[5].image}}" alt="" />
-          </div>
-
-          <div class="hit-card5-test hidden">
-            <img ng-src="{{playersHand[6].image}}" alt="" />
-          </div>
-
-        </div>
-
-      </section>
-
-      <!-- PLAY BUTTONS - RIGHT -->
-      <section class="user-play">
-        <div class="btn-container">
-          <p>Dealer Score</p>
-          <div class="dealer-score">
-            <p class="">{{dealerScore}}</p>
-          </div>
-
-          <button ng-click="playerHit()" ng-model="hitBtn" class="user-btn" id="user-btn-hit" name="button" ng-disabled="disableHit" click-disable>Hit</button> <br>
-          <button ng-click="stand()"                 class="user-btn" id="user-btn-stand" ng-disabled="disableStand">Stand</button>
-
-          <p>Your Score</p>
-          <div class="user-score">
-            <p class="">{{playerScore}}</p>
-          </div>
-
-        </div>
-
-        <div class="how-to-play-box">
-          How To Play!
-        </div>
-
-      </section>
-
-      <div class="how-to-play-info-invis">
-          <div class="how-to-play-info">
-            <h2>How To Play BlackJack</h2>
-            <ul>
-              <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
-              <li>Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
-              <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
-              <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
-              <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
-              <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
-              <li>Dealer will hit until his/her cards total 17 or higher.</li>
-            </ul>
-            <button class="rulez" type="button" name="button">Let Me Play</button>
-          </div>
-      </div>
-    </main>
+    <ui-view></ui-view>
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-<script src="js/jquery.js"></script>
+<!-- <script src="js/jquery.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
 <script src="dist/sweetalert.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/cardController.js"></script>
+<script src="js/statsController.js"></script>
 <script src="js/cardService.js"></script>
 <script src="js/clickDisableDirective.js"></script>
+<!-- <script src="js/howToPlayDirective.js"></script> -->
+
 </body>
 </html>

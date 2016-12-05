@@ -4,9 +4,6 @@ angular.module("gameApp").service("mainService", function($http, $q){
   var baseUrl = "https://deckofcardsapi.com/api/deck/";
   var deckId;
 
-  this.setFn = function(num){
-    localStorage.setItem('playerWins', JSON.stringify(num));
-  };
 
   function PlayerStats(userName, userWins, userLosses){//parameters - set by maincontroller
     this.userName = userName; //arg
@@ -33,6 +30,19 @@ angular.module("gameApp").service("mainService", function($http, $q){
     // }
   };
 
+  this.getStatsPage = function(name){
+    return JSON.parse(localStorage.getItem(name));
+  }
+
+
+
+
+
+
+
+
+
+
   this.getCards = function(){
     return $http({
       method: "GET",
@@ -43,7 +53,6 @@ angular.module("gameApp").service("mainService", function($http, $q){
       if(response.status === 200){
         console.log(response.data)
         deckId = response.data.deck_id;
-
         // console.log(deckId + " inside promise");
       } else {
         console.log("API failed")
@@ -58,9 +67,8 @@ angular.module("gameApp").service("mainService", function($http, $q){
 
 
 //
-//DRAW 2 CARDS ON OPENING OF GAME
 
-
+//DRAW 4 CARDS ON OPENING OF GAME
   this.startCards = function(){
       // console.log(deckId + " inside startCards function")
     return $http({
@@ -78,9 +86,7 @@ angular.module("gameApp").service("mainService", function($http, $q){
     })
   }
 
-
 //DRAW 1 CARD PER HIT CLICK
-
   this.drawOne = function(){
     // console.log(deckId + " inside drawOne function")
     return $http ({
@@ -96,12 +102,4 @@ angular.module("gameApp").service("mainService", function($http, $q){
   }
 
 
-
 }) // END SERVICE
-var TESTsetUsers = function(x,y,z){
-  var obj = new PlayerStats(x,y,z);
-  // var array = [];
-  // array.push(obj);
-  localStorage.setItem(x,JSON.stringify(obj));
-  // localStorage.setItem('listOfPlayers',JSON.stringify(array));
-};

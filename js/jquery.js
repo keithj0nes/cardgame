@@ -1,59 +1,50 @@
 $(document).ready(function() {
 
-//1st click - user card slides over and hit card appears
-  $("#user-btn-hit").on("click", function(){
-    $(".card1").addClass("move-left");
-    $(".card2").addClass("move-left");
-    $(".hit-card1-test").addClass("show-player");
-  })
+//user cards slide in based on click count
+    var clickCount = 0
+      $("#user-btn-hit").click(function(){
+          clickCount++;
+          if(clickCount == 1) {
+            $(".card1").addClass("move-left");
+            $(".card2").addClass("move-left");
+            $(".hit-card1-test").removeClass("hidden");
+            $(".hit-card1-test").addClass("show-player");
+            console.log(clickCount, "clickCount");
+          } else if(clickCount == 2){
+            $(".hit-card2-test").removeClass("hidden");
+            $(".hit-card2-test").addClass("show-player");
+            console.log(clickCount, "clickCount");
 
-//2nd click - 2nd hit card appears
-  $("#user-btn-hit").one("click",function() {
-      $(this).click(function() {
-         $(".hit-card2-test").addClass("show-player");
-      });
-  });
+          } else if(clickCount == 3){
+            $(".hit-card3-test").removeClass("hidden");
+            $(".hit-card3-test").addClass("show-player");
+            console.log(clickCount, "clickCount");
 
-//3rd click - 3rd hit card appears
-  $("#user-btn-hit").one("click",function() {
-      $(this).one("click", function(){
-        $(this).click(function() {
-           $(".hit-card3-test").addClass("show-player");
-        });
+          } else if(clickCount == 4){
+            $(".hit-card4-test").removeClass("hidden");
+            $(".hit-card4-test").addClass("show-player");
+            console.log(clickCount, "clickCount");
+
+          } else if(clickCount == 5){
+            $(".hit-card5-test").removeClass("hidden");
+            $(".hit-card6-test").addClass("show-player");
+            clickCount = 0;
+          }
       })
-  });
 
-//4th click - 4th hit card appears
-  $("#user-btn-hit").one("click",function() {
-      $(this).one("click", function(){
-        $(this).one("click", function(){
-          $(this).click(function() {
-             $(".hit-card4-test").addClass("show-player");
-          });
-        })
+      $("#user-btn-stand").click(function(){
+        clickCount = 0;
       })
-  });
 
-//5th click - 5th hit card appears
-  $("#user-btn-hit").one("click",function() {
-      $(this).one("click", function(){
-        $(this).one("click", function(){
-          $(this).one("click", function(){
-            $(this).click(function() {
-               $(".hit-card5-test").addClass("show-player");
-            });
-          })
-        })
-      })
-  });
 
-//how to play popup
-  $(".how-to-play-box").on("click", function(){
+      //show how to play popup
+  $(".how-to-play-btn").on("click", function(){
     $(".how-to-play-info").slideToggle(800);
   })
 //close how to play popup
-  $(".rulez").on("click", function(){
+  $(".rules-btn").on("click", function(){
     $(".how-to-play-info").slideToggle(800);
   })
 
-}) //end jquery doc
+
+})//end jQuery doc

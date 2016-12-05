@@ -7,9 +7,10 @@ angular.module("gameApp").controller("mainController", function($scope, mainServ
   }
   $scope.resetScores();
 
+setTimeout(function(){
    swal({
-    title: "An input!",
-    text: "Write something interesting:",
+    title: "Welcome to BlackJack!",
+    text: "Type your name:",
     type: "input",
     closeOnConfirm: true,
     animation: "slide-from-top",
@@ -22,20 +23,19 @@ angular.module("gameApp").controller("mainController", function($scope, mainServ
       return false
     }
     $scope.userName = inputValue;
+
     if(!getUserStats(inputValue)){
-      setUsers($scope.userName, $scope.playerWins, $scope.dealerWins)
-
-    }else{
+      setUsers(inputValue, $scope.playerWins, $scope.dealerWins);
+    } else {
       getUserStats(inputValue);
-
     }
 // $scope.getUserStats(inputValue);
 // $scope.setUsers(inputValue, $scope.playerWins, $scope.dealerWins)
-
       $scope.$digest(); //refreshes dom
     // swal("Nice!", "You wrote: " + inputValue, "success");
     // console.log("getuser Controller", $scope.userName);
   });
+}, 500)
 
 
 
@@ -299,27 +299,27 @@ console.log(localStorage);
                             $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
                             jQuery(".dealer-hit-card5-test").addClass("show-dealer");
                           }
-                          if($scope.dealerScore > 16){
+                          if($scope.dealerScore >= 17){
                             $scope.compareScores();
                           }
                         },1500) //end 5th hit card
                       }
-                      if($scope.dealerScore > 16){
+                      if($scope.dealerScore >= 17){
                         $scope.compareScores();
                       }
                     },1500) //end 4th hit card
                   }
-                  if($scope.dealerScore > 16){
+                  if($scope.dealerScore >= 17){
                     $scope.compareScores();
                   }
                 },1500) //end 3rd hit card
               }
-              if($scope.dealerScore > 16){
+              if($scope.dealerScore >= 17){
                 $scope.compareScores();
               }
             },1500) //end 2nd hit card
           }
-          if($scope.dealerScore > 16){
+          if($scope.dealerScore >= 17){
             $scope.compareScores();
           }
         }
@@ -396,12 +396,12 @@ console.log(localStorage);
               console.log(acePresentPlayer + " player hit");
 
 //disable buttons if playerScore is over 21
-              if($scope.playerScore >= 21){
-                $scope.disableHit = true;
-              }
-              if($scope.playerScore > 21){
-                $scope.disableStand = true;
-              }
+              // if($scope.playerScore >= 21){
+              //   $scope.disableHit = true;
+              // }
+              // if($scope.playerScore > 21){
+              //   $scope.disableStand = true;
+              // }
           })
         } //end player hit
 
@@ -444,11 +444,7 @@ console.log(localStorage);
     }
   mainGame();
   })
-  function setUsers(x,y,z){ //parameters - variables that will be set\
-    console.log(x,y,z, "set user function");
-    var object = new PlayerStats(x,y,z) //arguments
-    localStorage.setItem(x, JSON.stringify(object));
-  }
+
   // $scope.setUsers = function(x,y,z){
   //   mainService.setUsers(x,y,z);
   // }
@@ -459,28 +455,42 @@ console.log(localStorage);
   //   $scope.dealerWins = $scope.userObj.userLosses;
   // }
 
+  function setUsers(x,y,z){ //parameters - variables that will be set\
+    console.log(x,y,z, "set user function");
+    var object = new PlayerStats(x,y,z) //arguments
+    // var usersArray = [];
+    // usersArray.push(object)
+    localStorage.setItem(x, JSON.stringify(object));
+  }
+
   var getUserStats = function(name){
 
      var userStats = JSON.parse(localStorage.getItem(name));
+
      $scope.userName = userStats.userName;
      $scope.playerWins = userStats.userWins;
      $scope.dealerWins = userStats.userLosses;
      console.log(userStats.userLosses);
      console.log(userStats, "storage testz");
      if(!userStats){
-       return false
+       return false;
+     }
+     return userStats;
+  };
+
+
+
+     function PlayerStats(userName, userWins, userLosses){//parameters - set by maincontroller
+       this.userName = userName; //arg
+       this.userWins = userWins;
+       this.userLosses = userLosses;
      }
 
-     return userStats;
- };
+
+
+
+
+
+
 
 }) // end angular document
-
-
-
-
-function PlayerStats(userName, userWins, userLosses){//parameters - set by maincontroller
-  this.userName = userName; //arg
-  this.userWins = userWins;
-  this.userLosses = userLosses;
-}
