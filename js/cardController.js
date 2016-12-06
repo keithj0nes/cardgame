@@ -7,35 +7,35 @@ angular.module("gameApp").controller("mainController", function($scope, mainServ
   }
   $scope.resetScores();
 
-setTimeout(function(){
-   swal({
-    title: "Welcome to BlackJack!",
-    text: "Type your name:",
-    type: "input",
-    closeOnConfirm: true,
-    animation: "slide-from-top",
-    inputPlaceholder: "Your Name"
-  },
-  function(inputValue){
-    if (inputValue === false) return false;
-    if (inputValue === "") {
-      swal.showInputError("You need to write something!");
-      return false
-    }
-    $scope.userName = inputValue;
+//login popup on start
+  setTimeout(function(){
+    swal({
+      title: "Welcome to BlackJack!",
+      text: "Type your name:",
+      type: "input",
+      closeOnConfirm: true,
+      // animation: "slide-from-top",
+      inputPlaceholder: "Your Name"
+    },
+    function(inputValue){
+      if (inputValue === false) return false;
+      if (inputValue === "") {
+        swal.showInputError("You need to write something!");
+        return false
+      }
+      $scope.userName = inputValue;
 
-    if(!getUserStats(inputValue)){
-      setUsers(inputValue, $scope.playerWins, $scope.dealerWins);
-    } else {
-      getUserStats(inputValue);
-    }
-// $scope.getUserStats(inputValue);
-// $scope.setUsers(inputValue, $scope.playerWins, $scope.dealerWins)
-      $scope.$digest(); //refreshes dom
-    // swal("Nice!", "You wrote: " + inputValue, "success");
-    // console.log("getuser Controller", $scope.userName);
-  });
-}, 500)
+      if(!$scope.getUserStats(inputValue)){
+        $scope.setUserStats(inputValue, $scope.playerWins, $scope.dealerWins);
+      } else {
+        $scope.getUserStats(inputValue);
+      }
+  // $scope.getUserStats(inputValue);
+  // $scope.setUsers(inputValue, $scope.playerWins, $scope.dealerWins)
+        $scope.$digest(); //refreshes dom
+      // swal("Nice!", "You wrote: " + inputValue, "success");
+    });
+  }, 500)
 
 
 
@@ -104,8 +104,7 @@ console.log(localStorage);
         $scope.aceValueFuncPlayer = function(){
           for(var i = 0; i < $scope.playersHand.length; i++){
             if(acePresentPlayer === true && $scope.playerScore > 11 && $scope.playersHand[i].value === 11) {
-              // $scope.playersHand[i].value = 1;
-              // console.log("changing ace value now");
+              $scope.playersHand[i].value = 1;
             }
           }
         }
@@ -121,21 +120,13 @@ console.log(localStorage);
         $scope.aceValueFuncDealer = function(){
           for(var i = 0; i < $scope.dealersHand.length; i++){
             if(acePresentDealer === true && $scope.dealerScore > 11 && $scope.dealersHand[i].value === 11) {
-              // $scope.dealersHand[i].value = 1;
+              $scope.dealersHand[i].value = 1;
             }
           }
         }
 
-//set playerScore when loaded
-        // var initialPlayerScore = parseInt($scope.playersHand[0].value) + parseInt($scope.playersHand[1].value);
-        // $scope.playerScore = initialPlayerScore;
-
 //set dealerScore when loaded
-        var initialDealerScore = parseInt($scope.dealersHand[0].value) + parseInt($scope.dealersHand[1].value);
         $scope.dealerScore = parseInt($scope.dealersHand[0].value);
-        // $scope.dealerScore = initialDealerScore;
-
-
 
 //reset game to original state
         $scope.resetGame = function(){
@@ -147,27 +138,27 @@ console.log(localStorage);
           $scope.disableStand = false;
           jQuery(".dealer-card2").flip(false);
 
-          jQuery(".dealer-hit-card1-test").addClass("hidden");
-          jQuery(".dealer-hit-card1-test").removeClass("show-dealer");
-          jQuery(".dealer-hit-card2-test").addClass("hidden");
-          jQuery(".dealer-hit-card2-test").removeClass("show-dealer");
-          jQuery(".dealer-hit-card3-test").addClass("hidden");
-          jQuery(".dealer-hit-card3-test").removeClass("show-dealer");
-          jQuery(".dealer-hit-card4-test").addClass("hidden");
-          jQuery(".dealer-hit-card4-test").removeClass("show-dealer");
-          jQuery(".dealer-hit-card5-test").addClass("hidden");
-          jQuery(".dealer-hit-card5-test").removeClass("show-dealer");
+          jQuery(".dealer-hit-card1").addClass("hidden");
+          jQuery(".dealer-hit-card1").removeClass("show-dealer");
+          jQuery(".dealer-hit-card2").addClass("hidden");
+          jQuery(".dealer-hit-card2").removeClass("show-dealer");
+          jQuery(".dealer-hit-card3").addClass("hidden");
+          jQuery(".dealer-hit-card3").removeClass("show-dealer");
+          jQuery(".dealer-hit-card4").addClass("hidden");
+          jQuery(".dealer-hit-card4").removeClass("show-dealer");
+          jQuery(".dealer-hit-card5").addClass("hidden");
+          jQuery(".dealer-hit-card5").removeClass("show-dealer");
 
-          jQuery(".hit-card1-test").addClass("hidden");
-          jQuery(".hit-card1-test").removeClass("show-player");
-          jQuery(".hit-card2-test").addClass("hidden");
-          jQuery(".hit-card2-test").removeClass("show-player");
-          jQuery(".hit-card3-test").addClass("hidden");
-          jQuery(".hit-card3-test").removeClass("show-player");
-          jQuery(".hit-card4-test").addClass("hidden");
-          jQuery(".hit-card4-test").removeClass("show-player");
-          jQuery(".hit-card5-test").addClass("hidden");
-          jQuery(".hit-card5-test").removeClass("show-player");
+          jQuery(".player-hit-card1").addClass("hidden");
+          jQuery(".player-hit-card1").removeClass("show-player");
+          jQuery(".player-hit-card2").addClass("hidden");
+          jQuery(".player-hit-card2").removeClass("show-player");
+          jQuery(".player-hit-card3").addClass("hidden");
+          jQuery(".player-hit-card3").removeClass("show-player");
+          jQuery(".player-hit-card4").addClass("hidden");
+          jQuery(".player-hit-card4").removeClass("show-player");
+          jQuery(".player-hit-card5").addClass("hidden");
+          jQuery(".player-hit-card5").removeClass("show-player");
 
           jQuery(".card1").removeClass("move-left");
           jQuery(".card2").removeClass("move-left");
@@ -176,8 +167,8 @@ console.log(localStorage);
 
         }
 
-
-        $scope.trialAdd = function(array){
+//add scores together
+        $scope.addScores = function(array){
           var score = 0;
           for(var i = 0; i < array.length; i++){
             score += parseInt(array[i].value);
@@ -185,14 +176,13 @@ console.log(localStorage);
           return score;
         };
 
-        $scope.playerScore = $scope.trialAdd($scope.playersHand);
+        $scope.playerScore = $scope.addScores($scope.playersHand);
 
         if ($scope.playerScore == 21){
           swal("BLACKJACK!!", "You got 21 dealt to you! \n Click Stand to see dealer's score")
         }
 
         $scope.compareScores = function(){
-          console.log("compareScores running");
           if($scope.dealerScore > 21){
             $scope.playerWins++;
             swal({
@@ -226,7 +216,6 @@ console.log(localStorage);
                 mainGame();
               }, 250)
             });
-
           }else if($scope.dealerScore == $scope.playerScore){
             swal({
               title: "Push!",
@@ -238,66 +227,41 @@ console.log(localStorage);
               }, 250)
             });
           }
-
-          setUsers($scope.userName, $scope.playerWins, $scope.dealerWins); //arguments - actual data
-
+//set user stats to local storage after play
+          $scope.setUserStats($scope.userName, $scope.playerWins, $scope.dealerWins); //arguments - actual data
         }
-
-        // if(acePresentPlayer === true && $scope.playerScore >= 11){
-        //   for(var i = 0; i < $scope.playersHand.length; i++){
-        //     if($scope.playersHand[i].value === 11){
-        //       $scope.playersHand[i].value = 1;
-        //     }
-        //   }
-        // }
-        //
-        // if(acePresentPlayer === true && $scope.playerScore >= 11){
-        //   for(var i = 0; i < $scope.playersHand.length; i++){
-        //     if($scope.playersHand[i].value === 11){
-        //       $scope.playersHand[i].value = 1;
-        //     }
-        //   }
-        // }
-
-
-
-        console.log(acePresentPlayer + " player ace");
-        console.log(acePresentDealer + " dealer ace");
-
-        console.log($scope.dealerScore + " dealer score");
-
 
         $scope.dealerRun = function() {
           if($scope.dealerScore < 17){
             $scope.dealerHit()
-            $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
+            $scope.dealerScore = $scope.addScores($scope.dealersHand);
             jQuery(".dealer-card1").addClass("move-right");
             jQuery(".dealer-card2").addClass("move-right");
-            jQuery(".dealer-hit-card1-test").addClass("show-dealer");
+            jQuery(".dealer-hit-card1").addClass("show-dealer");
 //run 2nd hit card
             setTimeout(function(){
               if($scope.dealerScore < 17){
                 $scope.dealerHit()
-                $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
-                jQuery(".dealer-hit-card2-test").addClass("show-dealer");
+                $scope.dealerScore = $scope.addScores($scope.dealersHand);
+                jQuery(".dealer-hit-card2").addClass("show-dealer");
 //run 3rd hit card
                 setTimeout(function(){
                   if($scope.dealerScore < 17){
                     $scope.dealerHit()
-                    $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
-                    jQuery(".dealer-hit-card3-test").addClass("show-dealer");
+                    $scope.dealerScore = $scope.addScores($scope.dealersHand);
+                    jQuery(".dealer-hit-card3").addClass("show-dealer");
 //run 4th hit card
                     setTimeout(function(){
                       if($scope.dealerScore < 17){
                         $scope.dealerHit()
-                        $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
-                        jQuery(".dealer-hit-card4-test").addClass("show-dealer");
+                        $scope.dealerScore = $scope.addScores($scope.dealersHand);
+                        jQuery(".dealer-hit-card4").addClass("show-dealer");
 //run 5th hit card
                         setTimeout(function(){
                           if($scope.dealerScore < 17){
                             $scope.dealerHit()
-                            $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
-                            jQuery(".dealer-hit-card5-test").addClass("show-dealer");
+                            $scope.dealerScore = $scope.addScores($scope.dealersHand);
+                            jQuery(".dealer-hit-card5").addClass("show-dealer");
                           }
                           if($scope.dealerScore >= 17){
                             $scope.compareScores();
@@ -327,7 +291,7 @@ console.log(localStorage);
         $scope.stand = function(){
 //flip dealer card and add score
           jQuery(".dealer-card2").flip(true);
-          $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
+          $scope.dealerScore = $scope.addScores($scope.dealersHand);
 
 //disable hit and stand buttons when stand is clicked
           $scope.disableHit = true;
@@ -344,6 +308,8 @@ console.log(localStorage);
           $scope.disableStand = true;
         }
 
+        $scope.aceValueFuncPlayer();
+
 //start player hit
         $scope.playerHit = function(){
           mainService.drawOne().then(function(dataFromService){
@@ -354,46 +320,44 @@ console.log(localStorage);
             $scope.drawOne = dataFromService.cards[0];
 
 //set kings/queens/jacks to value of 10 on hit card
-              if($scope.drawOne.value === 'KING' || $scope.drawOne.value === 'QUEEN' || $scope.drawOne.value === 'JACK'){
-                $scope.drawOne.value = 10;
-                console.log($scope.drawOne.value);
-              }
+            if($scope.drawOne.value === 'KING' || $scope.drawOne.value === 'QUEEN' || $scope.drawOne.value === 'JACK'){
+              $scope.drawOne.value = 10;
+            }
 //set ace to value of 11 on hit card
-              if($scope.drawOne.value === 'ACE'){
-                $scope.drawOne.value = 11;
-                acePresentPlayer = true;
-              }
+            if($scope.drawOne.value === 'ACE'){
+              $scope.drawOne.value = 11;
+              acePresentPlayer = true;
+            }
 
-              $scope.playersHand.push($scope.drawOne);
+            $scope.playersHand.push($scope.drawOne);
 
-              if(acePresentPlayer === true && $scope.playerScore >= 11 && $scope.drawOne.value === 11) {
-                $scope.drawOne.value = 1;
-              }
+            if(acePresentPlayer === true && $scope.playerScore >= 11 && $scope.drawOne.value === 11) {
+              $scope.drawOne.value = 1;
+            }
 
-              $scope.playerScore = $scope.trialAdd($scope.playersHand)
-              $scope.aceValueFuncPlayer();
+            $scope.playerScore = $scope.addScores($scope.playersHand)
+            $scope.aceValueFuncPlayer();
 
-              if($scope.playerScore == 21){
-                setTimeout(function() {
-                  swal("You hit 21!", "Click Stand to see if you beat the dealer");
-                }, 500);``
-              } else if ($scope.playerScore > 21){
-                $scope.dealerWins++
-                var difference = $scope.playerScore - 21;
+            if($scope.playerScore == 21){
+              setTimeout(function() {
+                swal("You hit 21!", "Click Stand to see if you beat the dealer");
+              }, 500);
+            } else if ($scope.playerScore > 21){
+              $scope.dealerWins++
+              var difference = $scope.playerScore - 21;
 
-                setTimeout(function() {
-                  swal({
-                    title: "You scored " + difference + " over 21 \n You bust!",
-                    text: "Click OK for new game"
-                  }, function(){
-                    $scope.resetGame();
-                    mainGame();
-                  });
-                }, 500);
-              setUsers($scope.userName, $scope.playerWins, $scope.dealerWins); //arguments - actual data
-              }
+              setTimeout(function() {
+                swal({
+                  title: "You scored " + difference + " over 21 \n You bust!",
+                  text: "Click OK for new game"
+                }, function(){
+                  $scope.resetGame();
+                  mainGame();
+                });
+              }, 500);
+              $scope.setUserStats($scope.userName, $scope.playerWins, $scope.dealerWins); //arguments - actual data
+            }
 
-              console.log(acePresentPlayer + " player hit");
 
 //disable buttons if playerScore is over 21
               // if($scope.playerScore >= 21){
@@ -419,7 +383,6 @@ console.log(localStorage);
 //set kings/queens/jacks to value of 10 on hit card
             if($scope.drawOneD.value === 'KING' || $scope.drawOneD.value === 'QUEEN' || $scope.drawOneD.value === 'JACK'){
               $scope.drawOneD.value = 10;
-              console.log($scope.drawOneD.value);
             }
 
 //set ace to value of 11 on hit card
@@ -429,68 +392,34 @@ console.log(localStorage);
             }
 
             $scope.dealersHand.push($scope.drawOneD);
-            console.log($scope.dealersHand, "from dealerHit function");
-
-            $scope.aceValueFuncDealer();
 
             if(acePresentDealer === true && $scope.dealerScore >= 11 && $scope.drawOneD.value === 11) {
               $scope.drawOneD.value = 1;
             }
 
-            $scope.dealerScore = $scope.trialAdd($scope.dealersHand);
+            $scope.dealerScore = $scope.addScores($scope.dealersHand);
+            $scope.aceValueFuncDealer();
+
           })
         } //end dealer hit
       })
     }
   mainGame();
   })
-
-  // $scope.setUsers = function(x,y,z){
-  //   mainService.setUsers(x,y,z);
-  // }
-  // $scope.getUserStats = function(inputValue){
-  //   $scope.userObj = mainService.getCurrentUser(inputValue);
-  //   $scope.userName = $scope.userObj.userName;
-  //   $scope.playerWins = $scope.userObj.userWins;
-  //   $scope.dealerWins = $scope.userObj.userLosses;
-  // }
-
-  function setUsers(x,y,z){ //parameters - variables that will be set\
-    console.log(x,y,z, "set user function");
-    var object = new PlayerStats(x,y,z) //arguments
-    // var usersArray = [];
-    // usersArray.push(object)
-    localStorage.setItem(x, JSON.stringify(object));
+//set user stats to localStorage
+  $scope.setUserStats = function(name, wins, losses){
+    mainService.setUserStats(name, wins, losses);
   }
-
-  var getUserStats = function(name){
-
-     var userStats = JSON.parse(localStorage.getItem(name));
-
-     $scope.userName = userStats.userName;
-     $scope.playerWins = userStats.userWins;
-     $scope.dealerWins = userStats.userLosses;
-     console.log(userStats.userLosses);
-     console.log(userStats, "storage testz");
-     if(!userStats){
-       return false;
-     }
-     return userStats;
-  };
-
-
-
-     function PlayerStats(userName, userWins, userLosses){//parameters - set by maincontroller
-       this.userName = userName; //arg
-       this.userWins = userWins;
-       this.userLosses = userLosses;
-     }
-
-
-
-
-
-
-
+//get user stats from localStorage
+  $scope.getUserStats = function(inputValue){
+    $scope.userObj = mainService.getUserStats(inputValue);
+      if(!$scope.userObj){
+          return false;
+      }
+      $scope.userName = $scope.userObj.userName;
+      $scope.playerWins = $scope.userObj.userWins;
+      $scope.dealerWins = $scope.userObj.userLosses;
+      return $scope.userObj;
+  }
 
 }) // end angular document

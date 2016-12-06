@@ -1,0 +1,71 @@
+/******************************
+keyframes file for card sliding
+******************************/
+
+
+/*player hit cards slide in from right*/
+
+@-webkit-keyframes slide-in-from-right {
+  0% {
+    transform: translateX(1200px);
+  }
+  100% {
+    transform: translateX(140px);
+
+  }
+}
+
+@-moz-keyframes slide-in-from-right {
+  0% {
+    transform: translateX(1200px);
+  }
+  100% {
+    transform: translateX(-140px);
+  }
+}
+
+
+/*dealer hit cards slide in from left*/
+
+@-webkit-keyframes slide-in-from-left {
+  0% {
+    transform: translateX(-1200px);
+  }
+  100% {
+    transform: translateX(-150px);
+
+  }
+}
+
+@-moz-keyframes slide-in-from-left {
+  0% {
+    transform: translateX(-1500px);
+  }
+  100% {
+    transform: translateX(-420px);
+  }
+}
+
+
+/*player main cards slide to left*/
+
+@keyframes slide-to-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200px);
+  }
+}
+
+
+/*dealer main cards slide to right*/
+
+@keyframes slide-to-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200px);
+  }
+}
